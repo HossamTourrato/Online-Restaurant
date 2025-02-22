@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Online_Food_Ordering_System.Models.Category>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowFoodInCategory</title>
+    
+    <link href="~/Content/showFoodStyle/ShowFoodInCategory.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+       
+        <div id="products" class="row list-group">
+            <h2>Categories</h2>
+            @foreach (var item in Model)
+            {
+                <div class="item  col-xs-4 col-lg-4">
+                    <div class="thumbnail">
+                        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                        <div class="caption">
+                            <h4 class="group inner list-group-item-heading">
+                                @item.name
+                            </h4>
+                            <p class="group inner list-group-item-text">
+
+                            </p>
+                            <div class="row">
+                               
+                                <div class="col-xs-12 col-md-6">
+                                    @using (Html.BeginForm("getFoodItems", "Food_Items", FormMethod.Get))
+                                    {
+                                        <a class="btn btn-success" href="@Url.Action("getFoodItems", "Food_Items", new { id = item.cat_id })">go to items</a>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+            @Html.ActionLink("View Cart", "Showcart", "Cart", null, new { @class = "btn btn-info" })
+    </div>
+
+</body>
+</html>
